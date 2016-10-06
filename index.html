@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>BudgetTracker Laumer</title>
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<!-- endbower -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/style/styles.css">
+<!-- endinject -->
+</head>
+
+<body ng-controller="MainController">
+
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Budget Tracker</h1>
+  </div>
+
+
+<div class="col-xs-6">
+	<div class="panel panel-success">
+	    <div class="panel-heading"><h5>Income Entries</h5></div>
+	        <div class="panel-body">
+				<div class="form-group">	
+					<label for="incomeDescription">Description</label>
+				    <input type="text" name="income-description" class="form-control" ng-model="incomeDescription">
+					<label for="incomeInput">Amount</label>
+			            <div class="input-group">
+				            <span class="input-group-addon">$</span>
+				            <input type="number" name="income-input" class="form-control" ng-model="incomeInput">
+				        </div>     
+		        </div>
+     		</div>
+ 		<div class="panel-body">
+ 			<button class="btn btn-primary glyphicon-plus btn-success col-xs-12" ng-click="addIncome()"> Add Income</button>
+		</div> 
+			<table class="table">
+                            <tr>
+                                <td>
+                                    <strong>Description</strong>
+                                </td>
+                                <td>
+                                    <strong>Amount</strong>
+                                </td>
+                            </tr>
+                            <tr class="animated zoomInUp" ng-repeat="incomeItem in listOfIncomeItems">
+                                <td>
+                                    {{incomeItem.description}}
+                                </td>
+                                <td>
+                                    {{incomeItem.amount|currency}} 
+                                </td>
+                            </tr>
+                        </table>			
+	</div> 
+</div>
+<div class="col-xs-6">
+	<div class="panel panel-danger">
+	    <div class="panel-heading"><h5>Expense Entries</h5></div>
+	        <div class="panel-body">
+				<div class="form-group">	
+					<label for="expenseDescription">Description</label>
+				    <input type="text" name="expense-description" class="form-control" ng-model="expenseDescription">
+					<label for="expenseInput">Amount</label>
+					<div class="input-group">
+				            <span class="input-group-addon">$</span>
+				            <input type="number" name="expense-input" class="form-control" ng-model="expenseInput">
+				        </div> 
+		        </div>
+     		</div>
+ 		<div class="panel-body">
+ 			<button class="btn btn-primary glyphicon-plus btn-danger col-xs-12" ng-click="addExpense()"> Add Expense</button>
+		</div> 
+			<table class="table">
+                            <tr>
+                                <td>
+                                    <strong>Description</strong>
+                                </td>
+                                <td>
+                                    <strong>Amount</strong>
+                                </td>
+                            </tr>
+                            <tr class="animated zoomInUp" ng-repeat="expenseItem in listOfExpenseItems">
+                                <td>
+                                    {{expenseItem.description}}
+                                </td>
+                                <td>
+                                    {{expenseItem.amount|currency}} 
+                                </td>
+                            </tr>
+                        </table>			
+	</div> 
+</div>
+
+<div class="col-xs-6 col-xs-offset-3">
+	<div class="panel panel-info">
+		<div class="panel-heading"><h5>Summary</h5></div>
+			<div class="panel-body">
+				<div class="col-xs-6 text-center"><h5><strong>Total Income</strong></h5></div>     
+                    <div class="col-xs-6 text-center">
+                        <h5><strong>Total Expenses</strong></h5>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <h4>{{totalIncome|currency}}</h4>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <h4>{{totalExpenses|currency}}</h4>
+                    </div>                        
+                    <div class="col-xs-6 col-xs-offset-4 text center">
+                        <h5><strong>Left after Spending</strong></h5>
+                    </div>
+                    <div class="col-xs-6 col-xs-offset-3 text-center">
+                        <h4>{{totalIncome-totalExpenses|currency}}</h4>
+                    </div>
+			</div>
+	</div>
+</div>
+</div>
+
+
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<!-- endbower -->
+<!-- inject:js -->
+<script src="/app/app.js"></script>
+<!-- endinject -->
+</body>
+</html>
